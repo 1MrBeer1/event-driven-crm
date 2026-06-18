@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+set -eu
+
+POSTGRES_HOST="${POSTGRES_HOST:-localhost}"
+POSTGRES_PORT="${POSTGRES_PORT:-5432}"
+POSTGRES_USER="${POSTGRES_USER:-crm}"
+POSTGRES_DB="${POSTGRES_DB:-crm}"
+
+psql -h "$POSTGRES_HOST" -p "$POSTGRES_PORT" -U "$POSTGRES_USER" -d "$POSTGRES_DB" -v ON_ERROR_STOP=1 -f migrations/001_init.sql
+

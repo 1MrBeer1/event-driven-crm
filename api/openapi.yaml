@@ -1,0 +1,159 @@
+openapi: 3.0.3
+info:
+  title: Event Driven CRM API
+  version: 1.0.0
+  description: HTTP API for the Event Driven CRM Platform.
+servers:
+  - url: http://localhost:8080
+security:
+  - bearerAuth: []
+paths:
+  /auth/register:
+    post:
+      security: []
+      summary: Register a manager account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuthRequest"
+      responses:
+        "201":
+          description: User created
+  /auth/login:
+    post:
+      security: []
+      summary: Login and return a JWT
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuthRequest"
+      responses:
+        "200":
+          description: Authenticated
+  /api/leads:
+    post:
+      summary: Create a lead
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateLeadRequest"
+      responses:
+        "201":
+          description: Lead created
+    get:
+      summary: List leads
+      responses:
+        "200":
+          description: Leads returned
+  /api/leads/{id}:
+    get:
+      summary: Get lead by id
+      parameters:
+        - $ref: "#/components/parameters/ID"
+      responses:
+        "200":
+          description: Lead returned
+  /api/customers:
+    get:
+      summary: List customers
+      responses:
+        "200":
+          description: Customers returned
+  /api/customers/{id}:
+    get:
+      summary: Get customer by id
+      parameters:
+        - $ref: "#/components/parameters/ID"
+      responses:
+        "200":
+          description: Customer returned
+  /api/notifications:
+    get:
+      summary: List notifications
+      responses:
+        "200":
+          description: Notifications returned
+  /api/notifications/{id}:
+    get:
+      summary: Get notification by id
+      parameters:
+        - $ref: "#/components/parameters/ID"
+      responses:
+        "200":
+          description: Notification returned
+  /ws:
+    get:
+      summary: WebSocket endpoint
+      description: Connect using `ws://localhost:8080/ws?token=<jwt>`.
+      responses:
+        "101":
+          description: Switching Protocols
+  /health:
+    get:
+      security: []
+      summary: Liveness probe
+      responses:
+        "200":
+          description: Service is alive
+  /ready:
+    get:
+      security: []
+      summary: Readiness probe
+      responses:
+        "200":
+          description: Service is ready
+  /metrics:
+    get:
+      security: []
+      summary: Prometheus metrics
+      responses:
+        "200":
+          description: Metrics returned
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    ID:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  schemas:
+    AuthRequest:
+      type: object
+      required: [email, password]
+      properties:
+        email:
+          type: string
+          example: manager@example.com
+        password:
+          type: string
+          example: password123
+    CreateLeadRequest:
+      type: object
+      required: [name, email]
+      properties:
+        name:
+          type: string
+          example: Ada Lovelace
+        email:
+          type: string
+          example: ada@example.com
+        company:
+          type: string
+          example: Analytical Engines Ltd
+        source:
+          type: string
+          example: landing-page
+
