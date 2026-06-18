@@ -13,17 +13,17 @@ import (
 	goredis "github.com/redis/go-redis/v9"
 	"go.opentelemetry.io/contrib/instrumentation/github.com/gin-gonic/gin/otelgin"
 
-	"github.com/mr-beer/event-driven-crm/internal/auth"
-	"github.com/mr-beer/event-driven-crm/internal/config"
-	"github.com/mr-beer/event-driven-crm/internal/database"
-	"github.com/mr-beer/event-driven-crm/internal/httpx"
-	"github.com/mr-beer/event-driven-crm/internal/logger"
-	"github.com/mr-beer/event-driven-crm/internal/metrics"
-	"github.com/mr-beer/event-driven-crm/internal/middleware"
-	crmredis "github.com/mr-beer/event-driven-crm/internal/redis"
-	"github.com/mr-beer/event-driven-crm/internal/tracing"
-	crmws "github.com/mr-beer/event-driven-crm/internal/websocket"
-	gateway "github.com/mr-beer/event-driven-crm/services/gateway"
+	"github.com/1MrBeer1/event-driven-crm/internal/auth"
+	"github.com/1MrBeer1/event-driven-crm/internal/config"
+	"github.com/1MrBeer1/event-driven-crm/internal/database"
+	"github.com/1MrBeer1/event-driven-crm/internal/httpx"
+	"github.com/1MrBeer1/event-driven-crm/internal/logger"
+	"github.com/1MrBeer1/event-driven-crm/internal/metrics"
+	"github.com/1MrBeer1/event-driven-crm/internal/middleware"
+	crmredis "github.com/1MrBeer1/event-driven-crm/internal/redis"
+	"github.com/1MrBeer1/event-driven-crm/internal/tracing"
+	crmws "github.com/1MrBeer1/event-driven-crm/internal/websocket"
+	gateway "github.com/1MrBeer1/event-driven-crm/services/gateway"
 )
 
 func main() {

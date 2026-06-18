@@ -7,7 +7,7 @@ import (
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
 
-	"github.com/mr-beer/event-driven-crm/internal/models"
+	"github.com/1MrBeer1/event-driven-crm/internal/models"
 )
 
 var ErrCustomerNotFound = errors.New("customer not found")

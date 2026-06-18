@@ -6,7 +6,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/mr-beer/event-driven-crm/internal/auth"
+	"github.com/1MrBeer1/event-driven-crm/internal/auth"
 )
 
 const (

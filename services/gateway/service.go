@@ -8,8 +8,8 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/mr-beer/event-driven-crm/internal/auth"
-	"github.com/mr-beer/event-driven-crm/internal/models"
+	"github.com/1MrBeer1/event-driven-crm/internal/auth"
+	"github.com/1MrBeer1/event-driven-crm/internal/models"
 )
 
 var (

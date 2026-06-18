@@ -10,9 +10,9 @@ import (
 	goredis "github.com/redis/go-redis/v9"
 	kafkago "github.com/segmentio/kafka-go"
 
-	crmKafka "github.com/mr-beer/event-driven-crm/internal/kafka"
-	"github.com/mr-beer/event-driven-crm/internal/models"
-	crmredis "github.com/mr-beer/event-driven-crm/internal/redis"
+	crmKafka "github.com/1MrBeer1/event-driven-crm/internal/kafka"
+	"github.com/1MrBeer1/event-driven-crm/internal/models"
+	crmredis "github.com/1MrBeer1/event-driven-crm/internal/redis"
 )
 
 type EventPublisher interface {

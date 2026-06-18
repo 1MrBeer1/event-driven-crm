@@ -11,7 +11,7 @@ import (
 	"github.com/testcontainers/testcontainers-go"
 	tckafka "github.com/testcontainers/testcontainers-go/modules/kafka"
 
-	crmKafka "github.com/mr-beer/event-driven-crm/internal/kafka"
+	crmKafka "github.com/1MrBeer1/event-driven-crm/internal/kafka"
 )
 
 func TestKafkaPublishAndConsume(t *testing.T) {
