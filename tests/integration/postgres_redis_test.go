@@ -14,9 +14,9 @@ import (
 	"github.com/testcontainers/testcontainers-go"
 	"github.com/testcontainers/testcontainers-go/wait"
 
-	"github.com/1MrBeer1/event-driven-crm/internal/config"
-	"github.com/1MrBeer1/event-driven-crm/internal/database"
-	crmredis "github.com/1MrBeer1/event-driven-crm/internal/redis"
+	"github.com/mr-beer/event-driven-crm/internal/config"
+	"github.com/mr-beer/event-driven-crm/internal/database"
+	crmredis "github.com/mr-beer/event-driven-crm/internal/redis"
 )
 
 func TestPostgresMigrationAndRedisPubSub(t *testing.T) {

@@ -7,7 +7,7 @@ import (
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
 
-	"github.com/1MrBeer1/event-driven-crm/internal/models"
+	"github.com/mr-beer/event-driven-crm/internal/models"
 )
 
 var ErrNotificationNotFound = errors.New("notification not found")

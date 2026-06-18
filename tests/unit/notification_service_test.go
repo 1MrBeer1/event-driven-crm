@@ -6,9 +6,9 @@ import (
 
 	goredis "github.com/redis/go-redis/v9"
 
-	"github.com/1MrBeer1/event-driven-crm/internal/models"
-	crmredis "github.com/1MrBeer1/event-driven-crm/internal/redis"
-	notificationservice "github.com/1MrBeer1/event-driven-crm/services/notification-service"
+	"github.com/mr-beer/event-driven-crm/internal/models"
+	crmredis "github.com/mr-beer/event-driven-crm/internal/redis"
+	notificationservice "github.com/mr-beer/event-driven-crm/services/notification-service"
 )
 
 type fakeNotificationRepo struct {

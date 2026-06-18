@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/1MrBeer1/event-driven-crm/internal/models"
-	leadservice "github.com/1MrBeer1/event-driven-crm/services/lead-service"
+	"github.com/mr-beer/event-driven-crm/internal/models"
+	leadservice "github.com/mr-beer/event-driven-crm/services/lead-service"
 )
 
 type fakeLeadRepo struct {

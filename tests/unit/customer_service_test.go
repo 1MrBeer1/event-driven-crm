@@ -4,8 +4,8 @@ import (
 	"context"
 	"testing"
 
-	"github.com/1MrBeer1/event-driven-crm/internal/models"
-	customerservice "github.com/1MrBeer1/event-driven-crm/services/customer-service"
+	"github.com/mr-beer/event-driven-crm/internal/models"
+	customerservice "github.com/mr-beer/event-driven-crm/services/customer-service"
 )
 
 type fakeCustomerRepo struct {

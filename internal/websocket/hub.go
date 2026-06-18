@@ -6,7 +6,7 @@ import (
 
 	goredis "github.com/redis/go-redis/v9"
 
-	crmredis "github.com/1MrBeer1/event-driven-crm/internal/redis"
+	crmredis "github.com/mr-beer/event-driven-crm/internal/redis"
 )
 
 type Hub struct {

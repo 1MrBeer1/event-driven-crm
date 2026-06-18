@@ -8,8 +8,8 @@ import (
 	"github.com/google/uuid"
 	kafkago "github.com/segmentio/kafka-go"
 
-	crmKafka "github.com/1MrBeer1/event-driven-crm/internal/kafka"
-	"github.com/1MrBeer1/event-driven-crm/internal/models"
+	crmKafka "github.com/mr-beer/event-driven-crm/internal/kafka"
+	"github.com/mr-beer/event-driven-crm/internal/models"
 )
 
 type EventPublisher interface {

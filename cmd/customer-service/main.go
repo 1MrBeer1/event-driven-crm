@@ -15,12 +15,12 @@ import (
 	"github.com/1MrBeer1/event-driven-crm/internal/database"
 	"github.com/1MrBeer1/event-driven-crm/internal/httpx"
 	crmKafka "github.com/1MrBeer1/event-driven-crm/internal/kafka"
-	"github.com/1MrBeer1/event-driven-crm/internal/logger"
-	"github.com/1MrBeer1/event-driven-crm/internal/metrics"
-	"github.com/1MrBeer1/event-driven-crm/internal/middleware"
-	crmredis "github.com/1MrBeer1/event-driven-crm/internal/redis"
-	"github.com/1MrBeer1/event-driven-crm/internal/tracing"
-	customerservice "github.com/1MrBeer1/event-driven-crm/services/customer-service"
+	"github.com/mr-beer/event-driven-crm/internal/logger"
+	"github.com/mr-beer/event-driven-crm/internal/metrics"
+	"github.com/mr-beer/event-driven-crm/internal/middleware"
+	crmredis "github.com/mr-beer/event-driven-crm/internal/redis"
+	"github.com/mr-beer/event-driven-crm/internal/tracing"
+	customerservice "github.com/mr-beer/event-driven-crm/services/customer-service"
 )
 
 func main() {

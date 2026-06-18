@@ -11,16 +11,16 @@ import (
 	goredis "github.com/redis/go-redis/v9"
 	"go.opentelemetry.io/contrib/instrumentation/github.com/gin-gonic/gin/otelgin"
 
-	"github.com/1MrBeer1/event-driven-crm/internal/config"
-	"github.com/1MrBeer1/event-driven-crm/internal/database"
-	"github.com/1MrBeer1/event-driven-crm/internal/httpx"
-	crmKafka "github.com/1MrBeer1/event-driven-crm/internal/kafka"
-	"github.com/1MrBeer1/event-driven-crm/internal/logger"
-	"github.com/1MrBeer1/event-driven-crm/internal/metrics"
-	"github.com/1MrBeer1/event-driven-crm/internal/middleware"
-	crmredis "github.com/1MrBeer1/event-driven-crm/internal/redis"
-	"github.com/1MrBeer1/event-driven-crm/internal/tracing"
-	leadservice "github.com/1MrBeer1/event-driven-crm/services/lead-service"
+	"github.com/mr-beer/event-driven-crm/internal/config"
+	"github.com/mr-beer/event-driven-crm/internal/database"
+	"github.com/mr-beer/event-driven-crm/internal/httpx"
+	crmKafka "github.com/mr-beer/event-driven-crm/internal/kafka"
+	"github.com/mr-beer/event-driven-crm/internal/logger"
+	"github.com/mr-beer/event-driven-crm/internal/metrics"
+	"github.com/mr-beer/event-driven-crm/internal/middleware"
+	crmredis "github.com/mr-beer/event-driven-crm/internal/redis"
+	"github.com/mr-beer/event-driven-crm/internal/tracing"
+	leadservice "github.com/mr-beer/event-driven-crm/services/lead-service"
 )
 
 func main() {
