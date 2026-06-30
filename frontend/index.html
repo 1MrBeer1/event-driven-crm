@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Event Driven CRM Console</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">CRM</div>
+        <div>
+          <h1>Event CRM</h1>
+          <p>Local console</p>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <button class="nav-item active" data-view="overview" type="button">Обзор</button>
+        <button class="nav-item" data-view="leads" type="button">Заявки</button>
+        <button class="nav-item" data-view="notifications" type="button">Уведомления</button>
+        <button class="nav-item" data-view="tools" type="button">Инструменты</button>
+      </nav>
+
+      <div class="session">
+        <span id="sessionState" class="status-dot warn"></span>
+        <span id="sessionText">Не авторизован</span>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <h2 id="viewTitle">Обзор системы</h2>
+          <p id="viewSubtitle">Статус сервисов, быстрый демо-сценарий и realtime-события.</p>
+        </div>
+        <div class="top-actions">
+          <button id="refreshButton" class="button secondary" type="button">Обновить</button>
+          <a class="button ghost" href="/gateway/swagger/index.html" target="_blank" rel="noreferrer">Swagger</a>
+          <a class="button ghost" href="http://localhost:8088" target="_blank" rel="noreferrer">Kafka UI</a>
+        </div>
+      </header>
+
+      <section id="overview" class="view active">
+        <div class="grid status-grid">
+          <article class="panel">
+            <div class="panel-head">
+              <h3>Gateway</h3>
+              <span id="gatewayStatus" class="badge muted">checking</span>
+            </div>
+            <p class="muted-text">HTTP API, JWT, WebSocket</p>
+            <a href="/gateway/health" target="_blank" rel="noreferrer">/health</a>
+          </article>
+          <article class="panel">
+            <div class="panel-head">
+              <h3>Lead Service</h3>
+              <span id="leadStatus" class="badge muted">checking</span>
+            </div>
+            <p class="muted-text">PostgreSQL, Redis cache, Kafka producer</p>
+            <a href="/lead-service/ready" target="_blank" rel="noreferrer">/ready</a>
+          </article>
+          <article class="panel">
+            <div class="panel-head">
+              <h3>Customer Service</h3>
+              <span id="customerStatus" class="badge muted">checking</span>
+            </div>
+            <p class="muted-text">Kafka consumer, customer creation</p>
+            <a href="/customer-service/ready" target="_blank" rel="noreferrer">/ready</a>
+          </article>
+          <article class="panel">
+            <div class="panel-head">
+              <h3>Notification Service</h3>
+              <span id="notificationStatus" class="badge muted">checking</span>
+            </div>
+            <p class="muted-text">Kafka consumer, Redis Pub/Sub</p>
+            <a href="/notification-service/ready" target="_blank" rel="noreferrer">/ready</a>
+          </article>
+        </div>
+
+        <div class="split">
+          <section class="panel">
+            <div class="panel-head">
+              <h3>Демо-сценарий</h3>
+              <span class="badge info">lead -> customer -> notification</span>
+            </div>
+            <div class="form-grid">
+              <label>
+                Email
+                <input id="emailInput" type="email" value="manager@example.com" autocomplete="username">
+              </label>
+              <label>
+                Password
+                <input id="passwordInput" type="password" value="password123" autocomplete="current-password">
+              </label>
+              <label>
+                Lead name
+                <input id="leadNameInput" type="text" value="Ada Lovelace">
+              </label>
+              <label>
+                Lead email
+                <input id="leadEmailInput" type="email" value="ada@example.com">
+              </label>
+              <label>
+                Company
+                <input id="companyInput" type="text" value="Analytical Engines Ltd">
+              </label>
+              <label>
+                Source
+                <input id="sourceInput" type="text" value="dashboard">
+              </label>
+            </div>
+            <div class="button-row">
+              <button id="registerButton" class="button secondary" type="button">Register</button>
+              <button id="loginButton" class="button secondary" type="button">Login</button>
+              <button id="createLeadButton" class="button primary" type="button">Создать заявку</button>
+              <button id="demoButton" class="button accent" type="button">Запустить демо</button>
+            </div>
+            <pre id="resultBox" class="result-box">Готово к работе.</pre>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head">
+              <h3>Realtime</h3>
+              <span id="wsStatus" class="badge muted">offline</span>
+            </div>
+            <div id="eventFeed" class="event-feed">
+              <div class="empty">После создания заявки здесь появится WebSocket-событие.</div>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section id="leads" class="view">
+        <div class="split">
+          <section class="panel">
+            <div class="panel-head">
+              <h3>Leads</h3>
+              <button id="reloadLeadsButton" class="button secondary small" type="button">Обновить</button>
+            </div>
+            <div id="leadsTable" class="table-wrap"></div>
+          </section>
+          <section class="panel">
+            <div class="panel-head">
+              <h3>Customers</h3>
+              <button id="reloadCustomersButton" class="button secondary small" type="button">Обновить</button>
+            </div>
+            <div id="customersTable" class="table-wrap"></div>
+          </section>
+        </div>
+      </section>
+
+      <section id="notifications" class="view">
+        <section class="panel">
+          <div class="panel-head">
+            <h3>Notifications</h3>
+            <button id="reloadNotificationsButton" class="button secondary small" type="button">Обновить</button>
+          </div>
+          <div id="notificationsTable" class="table-wrap"></div>
+        </section>
+      </section>
+
+      <section id="tools" class="view">
+        <div class="grid tools-grid">
+          <a class="tool-link" href="/gateway/swagger/index.html" target="_blank" rel="noreferrer">
+            <strong>Swagger UI</strong>
+            <span>OpenAPI документация и ручная проверка endpoint-ов.</span>
+          </a>
+          <a class="tool-link" href="http://localhost:8088" target="_blank" rel="noreferrer">
+            <strong>Kafka UI</strong>
+            <span>Топики, consumer groups и события Kafka.</span>
+          </a>
+          <a class="tool-link" href="/gateway/metrics" target="_blank" rel="noreferrer">
+            <strong>Gateway metrics</strong>
+            <span>Prometheus metrics основного входа.</span>
+          </a>
+          <a class="tool-link" href="/gateway/ready" target="_blank" rel="noreferrer">
+            <strong>Gateway ready</strong>
+            <span>Проверка readiness через frontend proxy.</span>
+          </a>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
+

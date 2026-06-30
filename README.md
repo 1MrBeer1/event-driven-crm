@@ -24,6 +24,7 @@ The platform models a compact CRM workflow:
 - Prometheus metrics
 - OpenTelemetry tracing
 - slog structured logging
+- Browser dashboard frontend
 - Docker Compose
 - Testcontainers for integration tests
 
@@ -31,7 +32,9 @@ The platform models a compact CRM workflow:
 
 ```mermaid
 flowchart LR
-    Client[HTTP/WebSocket Client] --> Gateway[API Gateway :8080]
+    Client[Browser Client] --> Frontend[Frontend Console :3000]
+    Frontend --> Gateway[API Gateway :8080]
+    Client --> Gateway
     Gateway --> Lead[Lead Service :8081]
     Gateway --> CustomerAPI[Customer Service :8082]
     Gateway --> NotificationAPI[Notification Service :8083]
@@ -92,6 +95,7 @@ erDiagram
 
 ```text
 cmd/                         service entrypoints
+frontend/                    browser console for local demo
 services/                    domain service packages
 internal/                    shared infrastructure packages
 api/openapi.yaml             OpenAPI specification
@@ -117,12 +121,27 @@ Start the full platform:
 docker compose up -d --build
 ```
 
+If you use WSL and `make` works there:
+
+```bash
+make up
+```
+
 Useful URLs:
 
+- Frontend console: `http://localhost:3000`
 - API Gateway: `http://localhost:8080`
 - Swagger UI: `http://localhost:8080/swagger/index.html`
 - Kafka UI: `http://localhost:8088`
 - Gateway metrics: `http://localhost:8080/metrics`
+
+The frontend console is the easiest way to verify the system:
+
+1. Open `http://localhost:3000`.
+2. Click `Register` or `Login`.
+3. Click `Создать заявку` or `Запустить демо`.
+4. Open the `Заявки` and `Уведомления` tabs.
+5. Watch the `Realtime` panel for WebSocket events.
 
 Stop the stack:
 
@@ -279,4 +298,3 @@ go test -tags=integration ./tests/integration
 - CI pipeline with Docker image publishing.
 - Per-service database schemas if the deployment needs stricter ownership boundaries.
 - Rate limiting and refresh tokens in the gateway.
-
